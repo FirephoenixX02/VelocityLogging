@@ -66,7 +66,7 @@ public class VelocityLogging {
 
             if (!logFilePath.toFile().exists()) createLogFolderAndFileIfItNotExists();
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFilePath.toFile()))) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFilePath.toFile(), true))) {
                 String logLine = "[" + playerName + "] " +
                         "[" + server + "]:" +
                         messageOrCommand;
