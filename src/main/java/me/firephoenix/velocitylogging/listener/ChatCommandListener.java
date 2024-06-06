@@ -23,7 +23,7 @@ public class ChatCommandListener {
     public void onCommand(CommandExecuteEvent event) {
         if (!(event.getCommandSource() instanceof Player player)) return;
 
-        VelocityLogging.INSTANCE.addToLogFile(event.getCommand(), player.getUsername(), player.getCurrentServer().isEmpty() ? "Unknown" : player.getCurrentServer().get().getServerInfo().getName());
+        VelocityLogging.INSTANCE.addToLogFile("(Command)" + event.getCommand(), player.getUsername(), player.getCurrentServer().isEmpty() ? "Unknown" : player.getCurrentServer().get().getServerInfo().getName());
     }
 
 }
