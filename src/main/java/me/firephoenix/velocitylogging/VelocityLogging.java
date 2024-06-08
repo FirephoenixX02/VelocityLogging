@@ -16,6 +16,7 @@ import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -56,7 +57,7 @@ public class VelocityLogging {
 
     public void addToLogFile(String messageOrCommand, String playerName, String server) {
         executor.execute(() -> {
-            LocalDate date = LocalDate.now();
+            LocalDateTime date = LocalDateTime.now();
 
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
@@ -68,7 +69,8 @@ public class VelocityLogging {
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(logFilePath.toFile(), true))) {
                 String logLine = "[" + playerName + "] " +
-                        "[" + server + "]:" +
+                        "[" + server + "] " +
+                        "[UTC:" + date.format(DateTimeFormatter.ofPattern("HH:mm:ss")) + "]:" +
                         messageOrCommand;
 
                 writer.write(logLine);
